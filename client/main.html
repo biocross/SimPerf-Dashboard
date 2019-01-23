@@ -1,0 +1,100 @@
+<head>
+  <title>Performance Tracker</title>
+  <meta name="viewport" content="width=device-width, user-scalable=no">
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+  <div class="outer">
+    <div class="logo"></div>
+    <h1 class="title">Startup Performance Tracker</h1>
+    <div class="subtitle">Last 10 App Launches</div>
+    {{> leaderboard}}
+  </div>
+</body>
+
+<template name="leaderboard">
+  <ol class="leaderboard">
+    {{#each players}}
+      {{> singleLaunch}}
+    {{/each}}
+  </ol>
+
+  {{#if selectedName}}
+    <div class="details">
+      <div class="name">{{selectedName}}</div>
+      <button class="inc">Add 5 points</button>
+    </div>
+  {{else}}
+    <div class="message">Click a launch to select</div>
+  {{/if}}
+</template>
+
+<template name="singleLaunch">
+  <li class="player">
+    <div class="launchInfo">
+      <span class="name">Launch on an <strong>iPhone</strong></span>
+      <span class="score">{{moment startTime}}</span>
+        {{#if isBaseline}}
+        {{else}}
+          <p><a style="color: blue" class="setBaseline"> Set as Comparison Baseline</a></p>
+        {{/if}}
+    </div>
+    <h2> Time to Home: {{timeToHome}} ms </h2>
+    <h4> Compared to Baseline: {{baselineComparison}} </h4>
+    {{> ganttChart}}
+    <table class="pure-table perfDataTable">
+      <thead>
+           <tr>
+            <th>Name</th>
+            <th>Average Duration</th>
+            <th> Comparison w/ Baseline </th>
+           </tr>
+      </thead>
+      <tbody>
+        {{#each summary}}
+        <tr>
+          <td>{{name}}</td>
+          <td>{{round average}}</td>
+          <td>{{compare}}</td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+    <!-- {{#each details}}
+     {{> launch}}
+    {{/each}} -->
+  </li>
+</template>
+
+<template name="ganttChart">
+  <h4> Timeline of Events </h4>
+  <div class="gantt-container"></div>
+</template>
+
+<template name="launch">
+  <table class="pure-table perfDataTable">
+    <thead>
+         <tr>
+          <th>Name</th>
+          <th>Start Time</th>
+          <th>Duration</th>
+         </tr>
+    </thead>
+    <tbody>
+      {{#each this}}
+        {{> singleLaunchDet}}
+      {{/each}} 
+    </tbody>
+  </table>
+</template>
+
+<template name="singleLaunchDet">
+  <tr>
+    <td>{{[0]}}</td>
+    <td>{{[2]}}</td>
+    <td>{{[3]}}</td>
+  </tr>
+</template>
+
+
