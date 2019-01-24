@@ -32,16 +32,16 @@ if (Meteor.isClient) {
     },
 
     'timeToHome': function(){
-      var finalData = this.details[2];
+      var finalData = this.details;
       var startOfMain;
       var startOfHome;
 
       finalData.forEach(function(singleFunction){
-          if(singleFunction[1] === "Main") {
+          if(singleFunction[1] === "AppStart") {
             startOfMain = singleFunction[2];
           }
 
-          if(singleFunction[1] === "HomeVCViewDidLoad") {
+          if(singleFunction[1] === "b") {
             startOfHome = singleFunction[2];
           }
       });
@@ -54,16 +54,16 @@ if (Meteor.isClient) {
 
 
 
-      var finalData = this.details[2];
+      var finalData = this.details;
       var startOfMain;
       var startOfHome;
 
       finalData.forEach(function(singleFunction){
-          if(singleFunction[1] === "Main") {
+          if(singleFunction[1] === "AppStart") {
             startOfMain = singleFunction[2];
           }
 
-          if(singleFunction[1] === "HomeVCViewDidLoad") {
+          if(singleFunction[1] === "b") {
             startOfHome = singleFunction[2];
           }
       });
@@ -81,11 +81,11 @@ if (Meteor.isClient) {
       var startOfHome;
 
       finalData.forEach(function(singleFunction){
-          if(singleFunction[1] === "Main") {
+          if(singleFunction[1] === "AppStart") {
             startOfMain = singleFunction[2];
           }
 
-          if(singleFunction[1] === "HomeVCViewDidLoad") {
+          if(singleFunction[1] === "b") {
             startOfHome = singleFunction[2];
           }
       });
@@ -163,12 +163,12 @@ if (Meteor.isClient) {
 
         var formattedData = [];
 
-        var finalData = launchData.details[2];
+        var finalData = launchData.details;
         finalData.forEach(function(singleRow){
           var newRow = [];
           newRow.push(singleRow[0]);
-          var startDate = new Date(singleRow[2]);
-          var endDate = singleRow[2] + singleRow[3];
+          var startDate = new Date(singleRow[1]);
+          var endDate = singleRow[1] + singleRow[2];
           endDate = new Date(endDate);
           newRow.push(startDate);
           newRow.push(endDate);
