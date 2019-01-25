@@ -37,12 +37,12 @@ if (Meteor.isClient) {
       var startOfHome;
 
       finalData.forEach(function(singleFunction){
-          if(singleFunction[1] === "AppStart") {
-            startOfMain = singleFunction[2];
+          if(singleFunction[0] === "Main") {
+            startOfMain = singleFunction[1];
           }
 
-          if(singleFunction[1] === "b") {
-            startOfHome = singleFunction[2];
+          if(singleFunction[0] === "ServicesFetch") {
+            startOfHome = singleFunction[1];
           }
       });
 
@@ -51,20 +51,17 @@ if (Meteor.isClient) {
     },
 
     'baselineComparison': function(){
-
-
-
       var finalData = this.details;
       var startOfMain;
       var startOfHome;
 
       finalData.forEach(function(singleFunction){
-          if(singleFunction[1] === "AppStart") {
-            startOfMain = singleFunction[2];
+          if(singleFunction[0] === "Main") {
+            startOfMain = singleFunction[1];
           }
 
-          if(singleFunction[1] === "b") {
-            startOfHome = singleFunction[2];
+          if(singleFunction[0] === "ServicesFetch") {
+            startOfHome = singleFunction[1];
           }
       });
 
@@ -76,17 +73,17 @@ if (Meteor.isClient) {
         return "No Baseline Set";
       }
 
-      var finalData = currentBaseline.details[2];
+      var finalData = currentBaseline.details;
       var startOfMain;
       var startOfHome;
 
       finalData.forEach(function(singleFunction){
-          if(singleFunction[1] === "AppStart") {
-            startOfMain = singleFunction[2];
+          if(singleFunction[0] === "Main") {
+            startOfMain = singleFunction[1];
           }
 
-          if(singleFunction[1] === "b") {
-            startOfHome = singleFunction[2];
+          if(singleFunction[0] === "ServicesFetch") {
+            startOfHome = singleFunction[1];
           }
       });
 
@@ -178,7 +175,7 @@ if (Meteor.isClient) {
         dataTable.addRows(formattedData);
 
         var options = {
-          height: 600
+          height: 800
         };
         
         var chart = new google.visualization.Timeline(containerElement);

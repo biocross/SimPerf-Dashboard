@@ -40,7 +40,7 @@
           <p><a style="color: blue" class="setBaseline"> Set as Comparison Baseline</a></p>
         {{/if}}
     </div>
-    <h2> Time to Home: {{timeToHome}} ms </h2>
+    <h2> Time to Service Fetch Start: {{timeToHome}} ms </h2>
     <h4> Compared to Baseline: {{baselineComparison}} </h4>
     {{> ganttChart}}
     <table class="pure-table perfDataTable">
@@ -48,15 +48,15 @@
            <tr>
             <th>Name</th>
             <th>Average Duration</th>
-            <th> Comparison w/ Baseline </th>
+            <th>Comparison w/ Baseline</th>
            </tr>
       </thead>
       <tbody>
-        {{#each summary}}
+        {{#each details}}
         <tr>
-          <td>{{name}}</td>
-          <td>{{round average}}</td>
-          <td>{{compare}}</td>
+          <td>{{[0]}}</td>
+          <td>{{round [2]}}</td>
+          <td></td>
         </tr>
         {{/each}}
       </tbody>
@@ -92,8 +92,8 @@
 <template name="singleLaunchDet">
   <tr>
     <td>{{[0]}}</td>
+    <td>{{[1]}}</td>
     <td>{{[2]}}</td>
-    <td>{{[3]}}</td>
   </tr>
 </template>
 
