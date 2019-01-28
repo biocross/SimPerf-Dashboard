@@ -44,11 +44,11 @@
     <h2> Time to Service Fetch Start: {{timeToHome}} ms </h2>
     <h4> Compared to Baseline: {{baselineComparison}} </h4>
     {{> ganttChart}}
-    <table class="pure-table-striped pure-table">
+    <table class="pure-table-striped pure-table" id="{{startTime}}">
       <thead>
            <tr>
             <th>Name</th>
-            <th>Average Duration</th>
+            <th data-sort-method='number'>Average Duration</th>
             <!-- <th>Comparison w/ Baseline</th> -->
            </tr>
       </thead>
@@ -56,7 +56,7 @@
         {{#each details}}
         <tr>
           <td>{{[0]}}</td>
-          <td>{{round [2]}}</td>
+          <td data-sort="{{[2]}}">{{round [2]}}</td>
           <!-- <td></td> -->
         </tr>
         {{/each}}
