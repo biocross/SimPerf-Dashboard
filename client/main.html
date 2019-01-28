@@ -1,14 +1,14 @@
 <head>
-  <title>Performance Tracker</title>
+  <title>SimPerf</title>
   <meta name="viewport" content="width=device-width, user-scalable=no">
-  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600' rel='stylesheet' type='text/css'>\
+  <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
 </head>
 
 <body>
   <div class="outer">
     <div class="logo"></div>
-    <h1 class="title">Startup Performance Tracker</h1>
+    <h1 class="title">SimPerf Performance Tracker</h1>
     <div class="subtitle">Last 10 App Launches</div>
     {{> leaderboard}}
   </div>
@@ -44,7 +44,7 @@
     <h2> Time to Service Fetch Start: {{timeToHome}} ms </h2>
     <h4> Compared to Baseline: {{baselineComparison}} </h4>
     {{> ganttChart}}
-    <table class="pure-table perfDataTable">
+    <table class="pure-table-striped pure-table">
       <thead>
            <tr>
             <th>Name</th>
@@ -74,7 +74,7 @@
 </template>
 
 <template name="launch">
-  <table class="pure-table-striped perfDataTable">
+  <table class="pure-table pure-table-bordered">
     <thead>
          <tr>
           <th>Name</th>
