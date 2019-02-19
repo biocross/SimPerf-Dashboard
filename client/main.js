@@ -7,6 +7,8 @@ import { Launches } from '../imports/launches.js';
 import { Session } from 'meteor/session';
 import Tablesort from 'tablesort';
 
+const threshold = "/api/passenger/v4/shortcuts[Network]";
+
 if (Meteor.isClient) {
 
   final = Launches;
@@ -42,7 +44,7 @@ if (Meteor.isClient) {
             startOfMain = singleFunction[1];
           }
 
-          if(singleFunction[0] === "ServicesFetch") {
+          if(singleFunction[0] === threshold) {
             startOfHome = singleFunction[1];
           }
       });
@@ -61,7 +63,7 @@ if (Meteor.isClient) {
             startOfMain = singleFunction[1];
           }
 
-          if(singleFunction[0] === "ServicesFetch") {
+          if(singleFunction[0] === threshold) {
             startOfHome = singleFunction[1];
           }
       });
@@ -83,7 +85,7 @@ if (Meteor.isClient) {
             startOfMain = singleFunction[1];
           }
 
-          if(singleFunction[0] === "ServicesFetch") {
+          if(singleFunction[0] === threshold) {
             startOfHome = singleFunction[1];
           }
       });
@@ -186,6 +188,7 @@ if (Meteor.isClient) {
 
       function drawChart(){
         var dataTable = new google.visualization.DataTable();
+        dataTable.addColumn({ type: 'string', id: 'Type' });
         dataTable.addColumn({ type: 'string', id: 'function' });
         dataTable.addColumn({ type: 'date', id: 'Start' });
         dataTable.addColumn({ type: 'date', id: 'End' });
@@ -195,7 +198,15 @@ if (Meteor.isClient) {
         var finalData = launchData.details;
         finalData.forEach(function(singleRow){
           var newRow = [];
-          newRow.push(singleRow[0]);
+          if(singleRow[0].includes("[")) { // Network Request
+            let url = singleRow[0].match(/(.+)\[/)[1];
+            let category = singleRow[0].match(/.+\[(.+)]/)[1];
+            newRow.push(url);
+            newRow.push(category);
+          } else {
+            newRow.push(singleRow[0]);
+            newRow.push(`${Math.round(singleRow[2])} ms`);
+          }
           var startDate = new Date(singleRow[1]);
           var endDate = singleRow[1] + singleRow[2];
           endDate = new Date(endDate);
@@ -207,7 +218,7 @@ if (Meteor.isClient) {
         dataTable.addRows(formattedData);
 
         var options = {
-          height: 800
+          height: 1100
         };
         
         var chart = new google.visualization.Timeline(containerElement);
