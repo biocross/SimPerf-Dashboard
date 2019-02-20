@@ -34,7 +34,7 @@
 <template name="singleLaunch">
   <li class="player">
     <div class="launchInfo">
-      <span class="name">Launch on an <strong>{{device.name}}</strong></span>
+      <span class="name">Launch on an <strong>{{device.name}}</strong><a style="color: red" class="deleteRun" id="{{_id}}"> Delete Run </a></span>
       <span class="score">{{moment startTime}}</span>
         {{#if isBaseline}}
         {{else}}

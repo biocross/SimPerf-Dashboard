@@ -144,6 +144,11 @@ if (Meteor.isClient) {
   Template.singleLaunch.events ({
     'click .setBaseline': function(e){
       Session.set("comparisonBaseline", this);
+    },
+
+    'click .deleteRun': function(e) {
+      let id = $(e.target).attr("id");
+      Meteor.call('deleteRun', id);
     }
   });
 

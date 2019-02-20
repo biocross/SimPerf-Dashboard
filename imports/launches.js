@@ -45,5 +45,9 @@ Meteor.methods({
 				startTime: launchInfo.startTime,
 				finished: true
 			});
+	}, 
+
+	'deleteRun'(id) {
+		Launches.remove(id);
 	}
 });
