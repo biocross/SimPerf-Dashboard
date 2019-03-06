@@ -7,7 +7,7 @@ import {
 
 if (Meteor.isServer) {
 	Meteor.publish('launches', function() {
-		return Launches.find();
+		return Launches.find({}, { sort: { startTime: -1 }, limit: 5 });
 	});
 
 	SimpleRest.configure({

@@ -49,5 +49,13 @@ Meteor.methods({
 
 	'deleteRun'(id) {
 		Launches.remove(id);
+	},
+
+	'setSnapshot'(id) {
+		let launch = Launches.findOne(id);
+
+		Launches.update(id, {...launch,
+			isSnapshot: !launch.isSnapshot
+		});
 	}
 });

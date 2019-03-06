@@ -149,6 +149,11 @@ if (Meteor.isClient) {
     'click .deleteRun': function(e) {
       let id = $(e.target).attr("id");
       Meteor.call('deleteRun', id);
+    },
+
+    'click .setSnapshot': function(e) {
+      let id = $(e.target).attr("id");
+      Meteor.call('setSnapshot', id);
     }
   });
 

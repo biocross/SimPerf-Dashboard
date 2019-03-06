@@ -32,13 +32,18 @@
 </template>
 
 <template name="singleLaunch">
-  <li class="player">
+  <li class="player" style="padding: 8px; background-color: {{#if isSnapshot}}  antiquewhite; {{/if}}" >
     <div class="launchInfo">
       <span class="name">Launch on an <strong>{{device.name}}</strong><a style="color: red" class="deleteRun" id="{{_id}}"> Delete Run </a></span>
       <span class="score">{{moment startTime}}</span>
         {{#if isBaseline}}
         {{else}}
           <p><a style="color: blue" class="setBaseline"> Set as Comparison Baseline</a></p>
+        {{/if}}
+        {{#if isSnapshot}}
+        <p><a style="color: blue" class="setSnapshot" id="{{_id}}"> Unmark Snapshot</a></p>
+        {{else}}
+          <p><a style="color: blue" class="setSnapshot" id="{{_id}}"> Mark as Snapshot</a></p>
         {{/if}}
     </div>
     <h2> Time to Service Fetch Start: {{timeToHome}} ms </h2>
@@ -69,7 +74,6 @@
 </template>
 
 <template name="ganttChart">
-  <h4> Timeline of Events </h4>
   <div class="gantt-container"></div>
 </template>
 
