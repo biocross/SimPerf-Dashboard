@@ -7,7 +7,7 @@ import { Launches } from '../imports/launches.js';
 import { Session } from 'meteor/session';
 import Tablesort from 'tablesort';
 
-const threshold = "/api/passenger/v4/shortcuts[Network]";
+const threshold = "ServicesRendered";
 
 if (Meteor.isClient) {
 
