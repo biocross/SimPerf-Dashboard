@@ -7,7 +7,10 @@ import {
 
 if (Meteor.isServer) {
 	Meteor.publish('launches', function() {
-		return Launches.find({}, { sort: { startTime: -1 }, limit: 5 });
+		return Launches.find({ "$or" : [
+			{ archived: false },
+			{ archived : { "$exists" : false } }
+		] }, { sort: { startTime: -1 }, limit: 5 });
 	});
 
 	SimpleRest.configure({
