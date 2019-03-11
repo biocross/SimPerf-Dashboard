@@ -35,19 +35,49 @@
 <template name="singleLaunch">
   <li class="player" style="padding: 8px; background-color: {{#if isSnapshot}}  antiquewhite; {{/if}}">
     <div class="launchInfo">
+        <style scoped>
+
+            .button-success,
+            .button-error,
+            .button-warning,
+            .button-secondary {
+                color: white;
+                border-radius: 4px;
+                text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+                margin-left: 4px;
+            }
+    
+            .button-success {
+                background: rgb(28, 184, 65); /* this is a green */
+            }
+    
+            .button-error {
+                background: rgb(202, 60, 60); /* this is a maroon */
+            }
+    
+            .button-warning {
+                background: rgb(223, 117, 20); /* this is an orange */
+            }
+    
+            .button-secondary {
+                background: rgb(66, 184, 221); /* this is a light blue */
+            }
+    
+        </style>
       <span class="name">Launch on an <strong>{{device.name}}</strong><a style="color: red" class="deleteRun"
           id="{{_id}}"> Delete Run </a></span>
       <span class="score">{{moment startTime}}</span>
       {{#if isBaseline}}
+      <button class="button-error pure-button setBaseline">Remove as Comparison Baseline</button>
       {{else}}
-      <p><a style="color: blue" class="setBaseline"> Set as Comparison Baseline</a></p>
+      <button class="button-success pure-button setBaseline">Set as Comparison Baseline</button>
       {{/if}}
       {{#if isSnapshot}}
-      <p><a style="color: blue" class="setSnapshot" id="{{_id}}"> Unmark Snapshot</a></p>
+      <button class="button-warning pure-button setSnapshot"  id="{{_id}}">Unmark Snapshot</button>
       {{else}}
-      <p><a style="color: blue" class="setSnapshot" id="{{_id}}"> Mark as Snapshot</a></p>
+      <button class="button-warning pure-button setSnapshot"  id="{{_id}}">Mark as Snapshot</button>
       {{/if}}
-      <p><a style="color: blue" class="setComment" id="{{_id}}" comment="{{comment}}"> Edit Comment</a></p>
+      <button class="button-secondary pure-button setComment"  id="{{_id}}" comment="{{comment}}">Edit Comment</button>
       <p><a class="comment"> {{comment}}</a></p>
     </div>
     <h2> Time to Service Fetch Start: {{timeToHome}} ms </h2>

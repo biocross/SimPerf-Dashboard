@@ -143,7 +143,11 @@ if (Meteor.isClient) {
 
   Template.singleLaunch.events ({
     'click .setBaseline': function(e){
-      Session.set("comparisonBaseline", this);
+      if(Session.get("comparisonBaseline") && Session.get("comparisonBaseline")._id == this._id) {
+        Session.set("comparisonBaseline", undefined);
+      } else {
+        Session.set("comparisonBaseline", this);
+      }
     },
 
     'click .deleteRun': function(e) {
