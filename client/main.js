@@ -154,6 +154,15 @@ if (Meteor.isClient) {
     'click .setSnapshot': function(e) {
       let id = $(e.target).attr("id");
       Meteor.call('setSnapshot', id);
+    },
+
+    'click .setComment': function(e) {
+      let currentComment = $(e.target).attr("comment");
+      let id = $(e.target).attr("id");
+      let comment = prompt("Please enter a comment for the snapshot", (currentComment ? currentComment : ""));
+      if(comment.length > 0){
+        Meteor.call('setComment', {id, comment});
+      }
     }
   });
 
@@ -228,7 +237,7 @@ if (Meteor.isClient) {
         dataTable.addRows(formattedData);
 
         var options = {
-          height: 1100
+          height: 1400
         };
         
         var chart = new google.visualization.Timeline(containerElement);

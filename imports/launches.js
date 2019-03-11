@@ -53,9 +53,15 @@ Meteor.methods({
 
 	'setSnapshot'(id) {
 		let launch = Launches.findOne(id);
-
 		Launches.update(id, {...launch,
 			isSnapshot: !launch.isSnapshot
+		});
+	},
+
+	'setComment'(data) {
+		let launch = Launches.findOne(data.id);
+		Launches.update(data.id, {...launch,
+			comment: data.comment
 		});
 	}
 });
