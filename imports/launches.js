@@ -48,11 +48,12 @@ Meteor.methods({
 	}, 
 
 	'deleteRun'(id) {
-		// Launches.remove(id);
 		let launch = Launches.findOne(id);
-		Launches.update(id, {...launch,
-			archived: true
-		});
+		if(launch.isSnapshot !== true) {
+			Launches.update(id, {...launch,
+				archived: true
+			});
+		}
 	},
 
 	'setSnapshot'(id) {
