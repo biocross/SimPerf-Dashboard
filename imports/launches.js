@@ -37,12 +37,25 @@ Meteor.methods({
 			element[1] = element[1] - launchInfo.startTime;
 		});
 
+		var carrier = {};
+		var metrics = [];
+		
+		if(launchInfo.carrier) {
+			carrier = launchInfo.carrier;
+		}
+
+		if(launchInfo.metrics) {
+			metrics = launchInfo.metrics;
+		}
+
 		Launches.update({
 			_id: launchObject._id
 		}, {
 				details: launchInfo.details,
 				device: launchInfo.device,
 				startTime: launchInfo.startTime,
+				carrier: carrier,
+				metrics: metrics,
 				finished: true
 			});
 	}, 

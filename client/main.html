@@ -64,7 +64,7 @@
             }
     
         </style>
-      <span class="name">Launch on an <strong>{{device.name}}</strong></span>
+      <span class="name">Launch on an <strong>{{device.name}}</strong> • {{carrier.generation}} by {{carrier.carrierName}}</span>
       <span class="score">{{moment startTime}}</span>
       {{#if isBaseline}}
       <button class="button-error pure-button setBaseline">Remove as Comparison Baseline</button>
@@ -83,27 +83,6 @@
     <h2> Time to Service Fetch Start: {{timeToHome}} ms </h2>
     <h4> Compared to Baseline: {{baselineComparison}} </h4>
     {{> ganttChart}}
-    <table class="pure-table-striped pure-table" id="{{startTime}}">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th data-sort-method='number'>Average Duration</th>
-          <!-- <th>Comparison w/ Baseline</th> -->
-        </tr>
-      </thead>
-      <tbody>
-        {{#each details}}
-        <tr>
-          <td>{{[0]}}</td>
-          <td data-sort="{{[2]}}">{{round [2]}}</td>
-          <!-- <td></td> -->
-        </tr>
-        {{/each}}
-      </tbody>
-    </table>
-    <!-- {{#each details}}
-     {{> launch}}
-    {{/each}} -->
   </li>
 </template>
 
